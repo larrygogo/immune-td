@@ -1,0 +1,13 @@
+{
+  "name": "微观防线 · Immune TD",
+  "short_name": "Immune TD",
+  "description": "微观免疫系统塔防 — 玩家布置免疫细胞形成迷宫，拦截病原体入侵",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#070a0c",
+  "background_color": "#070a0c",
+  "categories": ["games", "strategy"]
+}

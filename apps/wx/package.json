@@ -1,0 +1,19 @@
+{
+  "name": "@immune-td/app-wx",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build --config apps/wx/vite.config.ts && bun apps/wx/postbuild.ts",
+    "preview": "bun apps/wx/scripts/wx-preview.ts"
+  },
+  "dependencies": {
+    "@immune-td/core": "workspace:*",
+    "@immune-td/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "miniprogram-ci": "^2.1.31",
+    "vite": "^5.4.0",
+    "typescript": "^5.6.0"
+  }
+}

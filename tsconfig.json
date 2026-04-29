@@ -1,0 +1,32 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@/analytics": ["packages/core/src/analytics/index.ts"],
+      "@/analytics/*": ["packages/core/src/analytics/*"],
+      "@/dev": ["packages/core/src/dev/index.ts"],
+      "@/dev/*": ["packages/core/src/dev/*"],
+      "@/platform/web/*": ["apps/h5/src/platform-web/*"],
+      "@/platform/wx": ["apps/wx/src/platform-wx/index.ts"],
+      "@/platform/wx/*": ["apps/wx/src/platform-wx/*"],
+      "@/platform": ["packages/core/src/platform/index.ts"],
+      "@/platform/*": ["packages/core/src/platform/*"],
+      "@engine/*": ["packages/core/src/game-engine/*"],
+      "@ui/store": ["packages/core/src/state/store.ts"],
+      "@ui/*": ["apps/h5/src/ui/*"],
+      "@audio/*": ["packages/core/src/audio/*"],
+      "@immune-td/shared": ["packages/shared/src/index.ts"],
+      "@immune-td/core/shell": ["packages/core/src/shell.ts"],
+      "@immune-td/core": ["packages/core/src/index.ts"]
+    }
+  },
+  "include": ["tests", "packages/shared/src", "packages/core/src", "apps/h5/src", "apps/wx/src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

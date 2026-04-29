@@ -1,0 +1,32 @@
+# 依赖与构建产物（builder stage 自己装/构）
+node_modules
+dist
+
+# 本地数据 & SQLite 临时文件（WAL/SHM）
+data
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# 环境文件（敏感）
+.env
+.env.local
+
+# Git / Docker 元数据
+.git
+.gitignore
+
+# 测试文件不进 runtime
+tests
+*.test.ts
+
+# 文档和 Docker 配置本身（不需要 COPY 进容器）
+README.md
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# 编辑器杂项
+.vscode
+.idea

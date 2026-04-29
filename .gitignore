@@ -1,0 +1,78 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Build output
+dist/
+build/
+.cache/
+wx-dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Superpowers brainstorm workspace
+.superpowers/
+
+# Asset intermediate files
+assets-raw/
+
+# Playwright
+/playwright-report/
+/test-results/
+/server/test-results/
+/playwright/.cache/
+/.playwright-mcp/
+
+# 调试散落产物
+/screenshot-*.png
+/package-lock.json
+
+# Font subset output（scripts/subset-font.ts 自动生成，build 前 prebuild 会重建）
+/public/fonts/noto-sans-sc-subset-*.woff2
+/public/fonts/misans-subset-*.woff2
+/public/fonts/share-tech-mono-subset-*.woff2
+/.font-cache.json
+
+# MiSans 源 TTF（subset 输入，体积大不进 git；首次构建从 hyperos.mi.com 下载或 spec 文档）
+/public/fonts/misans/*.ttf
+
+# Share Tech Mono 源 TTF（subset 输入，OFL 商用免费；首次构建从 google/fonts GitHub 下载）
+/public/fonts/share-tech-mono/*.ttf
+
+# Claude Code 本地运行时数据
+/.claude/
+
+# balance.ts 输出
+/balance-*.csv
+/*.balance.csv
+
+# Vite dev 自动调试收集（debug-capture 插件）
+/.debug/
+
+# 私钥不应进 git（兜底屏蔽，项目内一般不应该有 .key 文件）
+*.key
+!**/*.key.example

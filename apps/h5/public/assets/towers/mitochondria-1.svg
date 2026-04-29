@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="mito-amb"><stop offset="0%" stop-color="#88aaff" stop-opacity="0.2"/><stop offset="100%" stop-color="#88aaff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="mito-core"><stop offset="0%" stop-color="#cce0ff"/><stop offset="60%" stop-color="#88aaff"/><stop offset="100%" stop-color="#3358aa" stop-opacity="0"/></radialGradient>
+  </defs>
+  <!-- 氛围圆 -->
+  <circle cx="64" cy="64" r="56" fill="url(#mito-amb)"/>
+  <!-- 外膜椭圆（胶囊形） -->
+  <ellipse cx="64" cy="64" rx="46" ry="28" fill="#1f3060" stroke="#88aaff" stroke-width="2.5"/>
+  <!-- 内膜嵴（横向 3 道曲线） -->
+  <g stroke="#6688ff" stroke-width="2" stroke-linecap="round" fill="none">
+    <path d="M 28 56 Q 38 48 48 56 Q 58 64 68 56"/>
+    <path d="M 60 64 Q 70 56 80 64 Q 90 72 100 64"/>
+    <path d="M 28 72 Q 40 80 52 72 Q 64 64 76 72"/>
+  </g>
+  <!-- 基质核心（中心亮点） -->
+  <circle cx="64" cy="64" r="6" fill="url(#mito-core)"/>
+</svg>

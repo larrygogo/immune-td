@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="den-core"><stop offset="0%" stop-color="#fff3c8"/><stop offset="50%" stop-color="#ffcc44"/><stop offset="100%" stop-color="#8a5a10" stop-opacity="0"/></radialGradient>
+    <radialGradient id="den-amb"><stop offset="0%" stop-color="#ffcc44" stop-opacity="0.18"/><stop offset="100%" stop-color="#ffcc44" stop-opacity="0"/></radialGradient>
+  </defs>
+  <circle cx="64" cy="64" r="58" fill="url(#den-amb)"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#ffcc44" stroke-width="0.7" stroke-opacity="0.4" stroke-dasharray="2 4"/>
+  <g stroke="#ffcc44" stroke-width="2.3" stroke-linecap="round" fill="none">
+    <path d="M 64 50    L 64 24"/>
+    <path d="M 64 24    L 59 15.34"/>
+    <path d="M 64 24    L 69 15.34"/>
+    <path d="M 73.9 54.1    L 92.28 35.72"/>
+    <path d="M 92.28 35.72  L 94.87 26.06"/>
+    <path d="M 92.28 35.72  L 101.94 33.13"/>
+    <path d="M 78 64    L 104 64"/>
+    <path d="M 104 64   L 112.66 59"/>
+    <path d="M 104 64   L 112.66 69"/>
+    <path d="M 73.9 73.9    L 92.28 92.28"/>
+    <path d="M 92.28 92.28  L 101.94 94.87"/>
+    <path d="M 92.28 92.28  L 94.87 101.94"/>
+    <path d="M 64 78    L 64 104"/>
+    <path d="M 64 104   L 59 112.66"/>
+    <path d="M 64 104   L 69 112.66"/>
+    <path d="M 54.1 73.9    L 35.72 92.28"/>
+    <path d="M 35.72 92.28  L 33.13 101.94"/>
+    <path d="M 35.72 92.28  L 26.06 94.87"/>
+    <path d="M 50 64    L 24 64"/>
+    <path d="M 24 64    L 15.34 59"/>
+    <path d="M 24 64    L 15.34 69"/>
+    <path d="M 54.1 54.1    L 35.72 35.72"/>
+    <path d="M 35.72 35.72  L 26.06 33.13"/>
+    <path d="M 35.72 35.72  L 33.13 26.06"/>
+  </g>
+  <g fill="#ffcc44">
+    <circle cx="59"     cy="15.34"  r="2.8"/><circle cx="69"     cy="15.34"  r="2.8"/>
+    <circle cx="94.87"  cy="26.06"  r="2.8"/><circle cx="101.94" cy="33.13"  r="2.8"/>
+    <circle cx="112.66" cy="59"     r="2.8"/><circle cx="112.66" cy="69"     r="2.8"/>
+    <circle cx="101.94" cy="94.87"  r="2.8"/><circle cx="94.87"  cy="101.94" r="2.8"/>
+    <circle cx="69"     cy="112.66" r="2.8"/><circle cx="59"     cy="112.66" r="2.8"/>
+    <circle cx="33.13"  cy="101.94" r="2.8"/><circle cx="26.06"  cy="94.87"  r="2.8"/>
+    <circle cx="15.34"  cy="69"     r="2.8"/><circle cx="15.34"  cy="59"     r="2.8"/>
+    <circle cx="26.06"  cy="33.13"  r="2.8"/><circle cx="33.13"  cy="26.06"  r="2.8"/>
+  </g>
+  <g fill="#ffcc44" fill-opacity="0.25">
+    <circle cx="59"     cy="15.34"  r="5"/><circle cx="69"     cy="15.34"  r="5"/>
+    <circle cx="94.87"  cy="26.06"  r="5"/><circle cx="101.94" cy="33.13"  r="5"/>
+    <circle cx="112.66" cy="59"     r="5"/><circle cx="112.66" cy="69"     r="5"/>
+    <circle cx="101.94" cy="94.87"  r="5"/><circle cx="94.87"  cy="101.94" r="5"/>
+    <circle cx="69"     cy="112.66" r="5"/><circle cx="59"     cy="112.66" r="5"/>
+    <circle cx="33.13"  cy="101.94" r="5"/><circle cx="26.06"  cy="94.87"  r="5"/>
+    <circle cx="15.34"  cy="69"     r="5"/><circle cx="15.34"  cy="59"     r="5"/>
+    <circle cx="26.06"  cy="33.13"  r="5"/><circle cx="33.13"  cy="26.06"  r="5"/>
+  </g>
+  <circle cx="64" cy="64" r="12" fill="rgba(138,90,16,0.4)" stroke="#ffcc44" stroke-width="2"/>
+  <circle cx="64" cy="64" r="7"  fill="none" stroke="#ffcc44" stroke-width="0.8" stroke-opacity="0.6"/>
+  <circle cx="64" cy="64" r="5"  fill="url(#den-core)"/>
+  <circle cx="64" cy="64" r="2"  fill="#fff8dc"/>
+</svg>

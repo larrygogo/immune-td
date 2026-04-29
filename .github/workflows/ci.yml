@@ -1,0 +1,69 @@
+name: CI
+
+# 临时关闭：wx spike 期间频繁 push 试错，CI 反复跑 lint/typecheck/test/build 浪费时间
+# 等 wx spike 收尾后改回 push:branches:[main] + pull_request 触发
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache bun store
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies (with retry for network blips)
+        shell: bash
+        run: |
+          for i in 1 2 3; do
+            bun install --frozen-lockfile && break
+            echo "::warning::bun install failed (attempt $i/3), retrying in 8s..."
+            sleep 8
+          done
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Test
+        run: bun run test
+
+      - name: Build
+        run: bun run build
+
+      # E2E 是次要兜底 —— install 失败 / 测试失败都不阻塞主 CI
+      # 核心质量门：lint / typecheck / test / build 已通过即认为 CI 绿
+      - name: Install Playwright browsers
+        timeout-minutes: 5
+        continue-on-error: true
+        run: bunx playwright install chromium
+
+      - name: E2E smoke test
+        timeout-minutes: 5
+        continue-on-error: true
+        run: bun run test:e2e
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

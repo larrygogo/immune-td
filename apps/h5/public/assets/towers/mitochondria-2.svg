@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="mito-amb"><stop offset="0%" stop-color="#88aaff" stop-opacity="0.25"/><stop offset="100%" stop-color="#88aaff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="mito-core"><stop offset="0%" stop-color="#ffffff"/><stop offset="40%" stop-color="#aaccff"/><stop offset="100%" stop-color="#3358aa" stop-opacity="0"/></radialGradient>
+  </defs>
+  <!-- 氛围圆（更大） -->
+  <circle cx="64" cy="64" r="60" fill="url(#mito-amb)"/>
+  <!-- 外发光膜（虚线） -->
+  <ellipse cx="64" cy="64" rx="52" ry="32" fill="none" stroke="#88aaff" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="2 4"/>
+  <!-- 外膜椭圆 -->
+  <ellipse cx="64" cy="64" rx="48" ry="30" fill="#1a2a55" stroke="#88aaff" stroke-width="2.5"/>
+  <!-- 内膜嵴（5 道密集曲线） -->
+  <g stroke="#aaccff" stroke-width="2" stroke-linecap="round" fill="none">
+    <path d="M 24 54 Q 34 46 44 54 Q 54 62 64 54"/>
+    <path d="M 56 54 Q 66 46 76 54 Q 86 62 96 54 Q 102 58 104 54"/>
+    <path d="M 28 64 Q 40 58 52 64 Q 64 70 76 64 Q 88 58 100 64"/>
+    <path d="M 24 74 Q 34 82 44 74 Q 54 66 64 74"/>
+    <path d="M 56 74 Q 68 82 80 74 Q 92 66 104 74"/>
+  </g>
+  <!-- 基质核心（更亮 + 外晕） -->
+  <circle cx="64" cy="64" r="10" fill="url(#mito-core)"/>
+  <circle cx="64" cy="64" r="3" fill="#ffffff"/>
+</svg>

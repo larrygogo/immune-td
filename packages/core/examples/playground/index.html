@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>Immune TD · Core Playground</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #070a0c;
+        color: #5de0b5;
+        font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+      #root {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hint {
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        z-index: 9999;
+        font-size: 11px;
+        color: #5de0b5aa;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hint">PLAYGROUND · 离线模式（无账号 / 无同步）</div>
+    <div id="root"></div>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>

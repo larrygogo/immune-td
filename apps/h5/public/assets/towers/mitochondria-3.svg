@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="mito-amb"><stop offset="0%" stop-color="#88aaff" stop-opacity="0.32"/><stop offset="100%" stop-color="#88aaff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="mito-core"><stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#cce0ff"/><stop offset="80%" stop-color="#88aaff"/><stop offset="100%" stop-color="#3358aa" stop-opacity="0"/></radialGradient>
+  </defs>
+  <!-- 双层氛围圆 -->
+  <circle cx="64" cy="64" r="62" fill="url(#mito-amb)"/>
+  <!-- 双虚线外膜（突出 Lv3 复杂度） -->
+  <ellipse cx="64" cy="64" rx="56" ry="36" fill="none" stroke="#88aaff" stroke-width="0.7" stroke-opacity="0.4" stroke-dasharray="2 4"/>
+  <ellipse cx="64" cy="64" rx="52" ry="33" fill="none" stroke="#aaccff" stroke-width="0.6" stroke-opacity="0.3" stroke-dasharray="1 3"/>
+  <!-- 主外膜 -->
+  <ellipse cx="64" cy="64" rx="50" ry="32" fill="#152045" stroke="#aaccff" stroke-width="2.6"/>
+  <!-- 内膜嵴（7 道极密 + 双层） -->
+  <g stroke="#cce0ff" stroke-width="2" stroke-linecap="round" fill="none">
+    <path d="M 22 50 Q 32 42 42 50 Q 52 58 62 50"/>
+    <path d="M 58 50 Q 68 42 78 50 Q 88 58 98 50 Q 104 54 106 50"/>
+    <path d="M 22 60 Q 34 54 46 60 Q 58 66 70 60 Q 82 54 94 60 Q 102 64 106 60"/>
+    <path d="M 22 68 Q 34 74 46 68 Q 58 62 70 68 Q 82 74 94 68 Q 102 64 106 68"/>
+    <path d="M 22 78 Q 32 86 42 78 Q 52 70 62 78"/>
+    <path d="M 58 78 Q 68 86 78 78 Q 88 70 98 78 Q 104 74 106 78"/>
+  </g>
+  <!-- 基质核心（多层亮 + 外发光圆点） -->
+  <circle cx="64" cy="64" r="14" fill="url(#mito-core)"/>
+  <circle cx="64" cy="64" r="6" fill="#ffffff" fill-opacity="0.9"/>
+  <!-- ATP 分子小点（4 个） -->
+  <g fill="#ffee88">
+    <circle cx="40" cy="64" r="2"/>
+    <circle cx="88" cy="64" r="2"/>
+    <circle cx="64" cy="44" r="2"/>
+    <circle cx="64" cy="84" r="2"/>
+  </g>
+</svg>

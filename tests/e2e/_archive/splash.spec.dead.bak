@@ -1,0 +1,10 @@
+import { expect, test } from '@playwright/test';
+
+test.describe('Splash 屏端到端', () => {
+  test('标题可见且文字正确', async ({ page }) => {
+    await page.goto('/');
+    const title = page.getByRole('heading', { level: 1 });
+    await expect(title).toBeVisible();
+    await expect(title).toHaveText('IMMUNE · TD');
+  });
+});

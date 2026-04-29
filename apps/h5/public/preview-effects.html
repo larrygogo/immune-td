@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Immune TD · 塔 SVG 预览</title>
+  <style>
+    :root {
+      --bg: #050a12;
+      --bg-card: #0a1420;
+      --primary: #5de0b5;
+      --accent: #80c0ff;
+      --dim: #7090b0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px 16px 40px;
+      background: var(--bg);
+      color: var(--primary);
+      font-family: 'JetBrains Mono', 'SF Mono', Consolas, 'Noto Sans SC', sans-serif;
+      min-height: 100vh;
+    }
+    @media (min-width: 640px) {
+      body { padding: 24px 28px 40px; }
+    }
+    h1 {
+      font-size: 18px;
+      letter-spacing: 3px;
+      margin: 0 0 8px;
+      text-shadow: 0 0 14px var(--primary);
+    }
+    @media (min-width: 640px) {
+      h1 { font-size: 22px; letter-spacing: 4px; }
+    }
+    .hint {
+      color: var(--dim);
+      font-size: 11px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      line-height: 1.6;
+    }
+    @media (min-width: 640px) {
+      .hint { font-size: 12px; margin-bottom: 28px; letter-spacing: 1.5px; }
+    }
+    /* 手机默认单列：label 独占 + 3 个 tile 垂直堆叠 */
+    .row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: stretch;
+    }
+    /* 平板 ≥640px：label 独占 + 2 列 tile（Lv1/2 一行，Lv3 半幅） */
+    @media (min-width: 640px) {
+      .row {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .row-label {
+        grid-column: 1 / -1;
+      }
+    }
+    /* 桌面 ≥900px：160px label + 3 列 tile 并排 */
+    @media (min-width: 900px) {
+      .row {
+        grid-template-columns: 160px repeat(3, 1fr);
+        gap: 16px;
+      }
+      .row-label {
+        grid-column: auto;
+      }
+    }
+    .row-label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px 14px;
+      border-left: 2px solid var(--primary);
+      background: linear-gradient(to right, rgba(93, 224, 181, 0.08), transparent);
+    }
+    @media (min-width: 768px) {
+      .row-label { padding: 16px 14px; }
+    }
+    .row-label .name {
+      font-size: 16px;
+      letter-spacing: 3px;
+      margin-bottom: 6px;
+    }
+    .row-label .sci {
+      font-size: 10px;
+      color: var(--dim);
+      font-style: italic;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .row-label .desc {
+      font-size: 10px;
+      color: var(--dim);
+      line-height: 1.55;
+      letter-spacing: 0.5px;
+    }
+    .tile {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid rgba(93, 224, 181, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .tile-head {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(93, 224, 181, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+    .tile-head .lv {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    .tile-head .tag {
+      color: var(--accent);
+      font-size: 9px;
+    }
+    .canvas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      flex: 1;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(93, 224, 181, 0.06), transparent 70%),
+        linear-gradient(to bottom, #080f18, #050a12);
+      min-height: 180px;
+    }
+    @media (min-width: 768px) {
+      .canvas { padding: 12px; min-height: 280px; }
+    }
+    .canvas img {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      max-height: 240px;
+      filter: drop-shadow(0 0 12px rgba(93, 224, 181, 0.25));
+      transition: transform 0.25s ease;
+    }
+    .canvas img:hover {
+      transform: scale(1.08);
+    }
+    /* 不同塔色的光晕 */
+    .tile[data-type="neutrophil"] .canvas img { filter: drop-shadow(0 0 12px rgba(127, 184, 240, 0.3)); }
+    .tile[data-type="nkcell"] .canvas img { filter: drop-shadow(0 0 12px rgba(255, 159, 216, 0.3)); }
+    .tile[data-type="dendritic"] .canvas img { filter: drop-shadow(0 0 12px rgba(255, 215, 112, 0.3)); }
+
+    .tile-foot {
+      padding: 10px 12px;
+      font-size: 10px;
+      line-height: 1.55;
+      color: var(--dim);
+      border-top: 1px solid rgba(93, 224, 181, 0.08);
+      letter-spacing: 0.5px;
+      min-height: 62px;
+    }
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .controls label {
+      color: var(--dim);
+      font-size: 10px;
+      letter-spacing: 1px;
+      width: 100%;
+      margin-bottom: -4px;
+    }
+    @media (min-width: 640px) {
+      .controls label { width: auto; margin-bottom: 0; font-size: 11px; letter-spacing: 1.5px; }
+      .controls { gap: 12px; margin-bottom: 24px; }
+    }
+    .controls select, .controls button {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 6px 12px;
+      font-family: inherit;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(93, 224, 181, 0.2);
+    }
+    @media (min-width: 640px) {
+      .controls select, .controls button {
+        padding: 5px 14px;
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+    }
+    .controls button:hover { background: rgba(93, 224, 181, 0.1); }
+    .controls button.active { background: rgba(93, 224, 181, 0.25); box-shadow: 0 0 8px rgba(93, 224, 181, 0.4); }
+
+    /* ===== Compact 模式：40px 实战剪影视图 ===== */
+    body.compact .row {
+      grid-template-columns: 110px repeat(3, 56px);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    body.compact .row-label {
+      grid-column: auto;
+      padding: 6px 8px;
+    }
+    body.compact .row-label .name { font-size: 12px; margin-bottom: 2px; letter-spacing: 1.5px; }
+    body.compact .row-label .sci,
+    body.compact .row-label .desc { display: none; }
+    body.compact .tile {
+      min-height: auto;
+    }
+    body.compact .tile-head { padding: 3px 5px; font-size: 9px; }
+    body.compact .tile-head .tag { display: none; }
+    body.compact .canvas {
+      min-height: 48px;
+      padding: 4px;
+    }
+    body.compact .canvas img {
+      width: 40px !important;
+      height: 40px !important;
+      max-width: 40px !important;
+      max-height: 40px !important;
+      filter: drop-shadow(0 0 5px rgba(93, 224, 181, 0.3)) !important;
+    }
+    body.compact .tile[data-type="neutrophil"] .canvas img {
+      filter: drop-shadow(0 0 5px rgba(110, 212, 238, 0.35)) !important;
+    }
+    body.compact .tile[data-type="nkcell"] .canvas img {
+      filter: drop-shadow(0 0 5px rgba(255, 143, 196, 0.35)) !important;
+    }
+    body.compact .tile[data-type="dendritic"] .canvas img {
+      filter: drop-shadow(0 0 5px rgba(255, 200, 112, 0.35)) !important;
+    }
+    body.compact .tile-foot { display: none; }
+    @media (min-width: 640px) {
+      body.compact .row { grid-template-columns: 120px repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <h1>IMMUNE · TD · 塔 SVG 预览</h1>
+  <div class="hint">
+    4 种免疫细胞塔 × Lv1/2/3 共 12 个手写 SVG。每个细胞都有科学特征（核形 / 细胞器 / 突起），等级越高细节越丰富（颗粒数 / 伪足数 / 外环 / 光晕）。<br>
+    鼠标悬浮 sprite 放大查看细节。
+  </div>
+
+  <div class="controls">
+    <label>视图：</label>
+    <button onclick="setMode('detail')" id="btn-detail">细节（240px）</button>
+    <button onclick="setMode('compact')" id="btn-compact">实战（40px 剪影）</button>
+    <label>背景：</label>
+    <button onclick="setBg('dark')">深色（游戏态）</button>
+    <button onclick="setBg('grid')">网格</button>
+    <button onclick="setBg('white')">白底</button>
+  </div>
+
+  <div id="grid"></div>
+
+<script>
+const TOWERS = [
+  {
+    type: 'macrophage',
+    name: '巨噬细胞',
+    sci: 'Macrophage',
+    desc: '先天免疫核心，吞噬病原体形成囊泡降解。AoE 短程。',
+    levels: [
+      { lv: 1, tag: '警戒态', desc: '基础形态，4 伪足凸起，单核仁，2 囊泡 + 2 线粒体。' },
+      { lv: 2, tag: '激活态', desc: '胞体扩大，双核仁，3 囊泡 + 3 线粒体 + 能量脉动外环。' },
+      { lv: 3, tag: '满战斗', desc: '最大胞体 + 核膜孔，3 核仁，4 囊泡 + 4 线粒体 + 双能量环。' },
+    ],
+  },
+  {
+    type: 'neutrophil',
+    name: '中性粒细胞',
+    sci: 'Neutrophil',
+    desc: '数量最多的白细胞，快速到达释放杀菌颗粒。单体高射速。',
+    levels: [
+      { lv: 1, tag: '初响应', desc: '2 分叶核（桥连），嗜中性颗粒密布 12 颗。' },
+      { lv: 2, tag: '激活态', desc: '3 分叶核，颗粒更密 + 2 个嗜天青大颗粒 + 脉动外环。' },
+      { lv: 3, tag: '满攻击', desc: '5 分叶核（典型成熟），颗粒 20+，4 嗜天青 + 双外环。' },
+    ],
+  },
+  {
+    type: 'nkcell',
+    name: 'NK 细胞',
+    sci: 'Natural Killer',
+    desc: '大颗粒淋巴细胞，识别异常或感染细胞。中远程精准单体。',
+    levels: [
+      { lv: 1, tag: '巡逻态', desc: '偏移大核 + 4 个深色大型嗜天青颗粒（NK 特征）。' },
+      { lv: 2, tag: '激活态', desc: '7 个大颗粒（指向性排列 + perforin 微丝暗示）。' },
+      { lv: 3, tag: '满杀伤', desc: '10 个大颗粒 + 多核仁 + 强 perforin 辐射线 + 双外环。' },
+    ],
+  },
+  {
+    type: 'dendritic',
+    name: '树突状细胞',
+    sci: 'Dendritic Cell',
+    desc: '抗原呈递专家，识别病原并训练周围免疫细胞增强攻击。Helper 辅助塔。',
+    levels: [
+      { lv: 1, tag: '未成熟', desc: '5 根短树突 + 少量 MHC 颗粒。' },
+      { lv: 2, tag: '成熟中', desc: '7 根长树突（每根一次分叉）+ 末端亮球 + 脉动外环。' },
+      { lv: 3, tag: '满成熟', desc: '10 根树突（2 级分叉）+ 神经元放射感 + 多核仁 + 双外环。' },
+    ],
+  },
+];
+
+let currentSize = 240;
+let currentBg = 'dark';
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  for (const t of TOWERS) {
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `
+      <div class="row-label">
+        <div class="name">${t.name}</div>
+        <div class="sci">${t.sci}</div>
+        <div class="desc">${t.desc}</div>
+      </div>
+    `;
+    for (const l of t.levels) {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.dataset.type = t.type;
+      tile.innerHTML = `
+        <div class="tile-head">
+          <span class="lv">Lv ${l.lv}</span>
+          <span class="tag">${l.tag}</span>
+        </div>
+        <div class="canvas">
+          <img src="/assets/towers/${t.type}-${l.lv}.svg" alt="${t.type} Lv${l.lv}"
+               style="max-width:${currentSize}px;max-height:${currentSize}px;" />
+        </div>
+        <div class="tile-foot">${l.desc}</div>
+      `;
+      row.appendChild(tile);
+    }
+    grid.appendChild(row);
+  }
+  applyBg();
+}
+
+function setMode(mode) {
+  document.body.classList.toggle('compact', mode === 'compact');
+  document.getElementById('btn-detail').classList.toggle('active', mode !== 'compact');
+  document.getElementById('btn-compact').classList.toggle('active', mode === 'compact');
+}
+
+function setSize(v) {
+  currentSize = Number(v);
+  render();
+}
+
+function setBg(mode) {
+  currentBg = mode;
+  applyBg();
+}
+
+function applyBg() {
+  const canvases = document.querySelectorAll('.canvas');
+  for (const c of canvases) {
+    if (currentBg === 'dark') {
+      c.style.background = 'radial-gradient(circle at 50% 45%, rgba(93, 224, 181, 0.06), transparent 70%), linear-gradient(to bottom, #080f18, #050a12)';
+    } else if (currentBg === 'grid') {
+      c.style.background = `
+        linear-gradient(rgba(93, 224, 181, 0.08) 1px, transparent 1px) 0 0 / 20px 20px,
+        linear-gradient(90deg, rgba(93, 224, 181, 0.08) 1px, transparent 1px) 0 0 / 20px 20px,
+        #050a12
+      `;
+    } else if (currentBg === 'white') {
+      c.style.background = '#e8eef5';
+    }
+  }
+}
+
+render();
+setMode('detail');
+</script>
+</body>
+</html>

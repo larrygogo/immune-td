@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="ec-body" cx="30%" cy="40%">
+      <stop offset="0%" stop-color="#e8a0ff"/>
+      <stop offset="55%" stop-color="#b84de0"/>
+      <stop offset="100%" stop-color="#3a0a5c"/>
+    </radialGradient>
+    <radialGradient id="ec-glow">
+      <stop offset="0%" stop-color="#b84de0" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#b84de0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="66" cy="66" rx="58" ry="38" fill="url(#ec-glow)"/>
+  <g stroke="#b84de0" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-opacity="0.8">
+    <path d="M 36 74 Q 26 80, 20 86 Q 12 92, 6 100 Q 2 106, 4 112"/>
+    <path d="M 40 80 Q 30 88, 22 96 Q 14 104, 8 114"/>
+    <path d="M 96 58 Q 104 52, 110 50 Q 116 48, 120 48"/>
+  </g>
+  <g stroke="#b84de0" stroke-width="0.6" stroke-opacity="0.6" stroke-linecap="round">
+    <line x1="54" y1="52" x2="52" y2="46"/>
+    <line x1="66" y1="48" x2="66" y2="42"/>
+    <line x1="78" y1="50" x2="80" y2="44"/>
+    <line x1="88" y1="56" x2="92" y2="52"/>
+    <line x1="88" y1="76" x2="92" y2="80"/>
+    <line x1="78" y1="84" x2="80" y2="90"/>
+    <line x1="66" y1="86" x2="66" y2="92"/>
+    <line x1="54" y1="84" x2="52" y2="90"/>
+  </g>
+  <path d="
+    M 40 58
+    Q 34 62, 34 66
+    Q 34 74, 40 78
+    Q 54 86, 70 84
+    Q 86 82, 94 76
+    Q 100 72, 100 66
+    Q 100 60, 94 56
+    Q 80 48, 66 50
+    Q 52 52, 44 54
+    Q 38 56, 40 58 Z"
+    fill="url(#ec-body)" stroke="#b84de0" stroke-width="2"/>
+  <path d="
+    M 44 60
+    Q 38 64, 40 70
+    Q 44 76, 56 78
+    Q 70 80, 82 78
+    Q 90 76, 92 70
+    Q 94 64, 90 60
+    Q 80 54, 66 56
+    Q 52 58, 46 58 Z"
+    fill="none" stroke="#b84de0" stroke-width="0.6" stroke-opacity="0.5"/>
+  <g stroke="#ff88f0" stroke-width="0.7" fill="none" stroke-opacity="0.75">
+    <path d="M 52 66 Q 58 64, 66 66 Q 74 68, 80 66"/>
+    <path d="M 52 70 Q 58 72, 66 70 Q 74 68, 80 70"/>
+  </g>
+  <g fill="#2a0a3c" fill-opacity="0.55">
+    <ellipse cx="50" cy="68" rx="2.5" ry="1.5"/>
+    <ellipse cx="82" cy="70" rx="3" ry="1.5"/>
+    <ellipse cx="66" cy="62" rx="2" ry="1.2"/>
+  </g>
+  <g fill="#f0b8ff" fill-opacity="0.3">
+    <ellipse cx="60" cy="58" rx="10" ry="2" transform="rotate(-10 60 58)"/>
+  </g>
+</svg>

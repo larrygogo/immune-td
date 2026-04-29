@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="sa-sphere" cx="35%" cy="30%">
+      <stop offset="0%" stop-color="#ffe5a8"/>
+      <stop offset="55%" stop-color="#ffb040"/>
+      <stop offset="100%" stop-color="#5a3808"/>
+    </radialGradient>
+    <radialGradient id="sa-glow">
+      <stop offset="0%" stop-color="#ffb040" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffb040" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="64" cy="64" r="58" fill="url(#sa-glow)"/>
+  <g>
+    <circle cx="64" cy="80" r="22" fill="url(#sa-sphere)" stroke="#ffb040" stroke-width="1.8"/>
+    <g stroke="#ffb040" stroke-width="0.7" stroke-linecap="round" stroke-opacity="0.7">
+      <g transform="rotate(0 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+      <g transform="rotate(45 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+      <g transform="rotate(90 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+      <g transform="rotate(135 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+      <g transform="rotate(180 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+      <g transform="rotate(225 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+      <g transform="rotate(270 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+      <g transform="rotate(315 64 80)"><line x1="64" y1="58" x2="64" y2="54"/></g>
+    </g>
+  </g>
+  <g>
+    <circle cx="46" cy="50" r="18" fill="url(#sa-sphere)" stroke="#ffb040" stroke-width="1.8"/>
+    <g stroke="#ffb040" stroke-width="0.7" stroke-linecap="round" stroke-opacity="0.7">
+      <g transform="rotate(0 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+      <g transform="rotate(45 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+      <g transform="rotate(90 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+      <g transform="rotate(135 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+      <g transform="rotate(180 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+      <g transform="rotate(225 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+      <g transform="rotate(270 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+      <g transform="rotate(315 46 50)"><line x1="46" y1="32" x2="46" y2="28"/></g>
+    </g>
+  </g>
+  <g>
+    <circle cx="82" cy="50" r="18" fill="url(#sa-sphere)" stroke="#ffb040" stroke-width="1.8"/>
+    <g stroke="#ffb040" stroke-width="0.7" stroke-linecap="round" stroke-opacity="0.7">
+      <g transform="rotate(0 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+      <g transform="rotate(45 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+      <g transform="rotate(90 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+      <g transform="rotate(135 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+      <g transform="rotate(180 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+      <g transform="rotate(225 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+      <g transform="rotate(270 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+      <g transform="rotate(315 82 50)"><line x1="82" y1="32" x2="82" y2="28"/></g>
+    </g>
+  </g>
+  <g>
+    <circle cx="64" cy="42" r="14" fill="url(#sa-sphere)" stroke="#ffb040" stroke-width="1.8"/>
+    <g stroke="#ffb040" stroke-width="0.7" stroke-linecap="round" stroke-opacity="0.75">
+      <g transform="rotate(0 64 42)"><line x1="64" y1="28" x2="64" y2="24"/></g>
+      <g transform="rotate(60 64 42)"><line x1="64" y1="28" x2="64" y2="24"/></g>
+      <g transform="rotate(120 64 42)"><line x1="64" y1="28" x2="64" y2="24"/></g>
+      <g transform="rotate(180 64 42)"><line x1="64" y1="28" x2="64" y2="24"/></g>
+      <g transform="rotate(240 64 42)"><line x1="64" y1="28" x2="64" y2="24"/></g>
+      <g transform="rotate(300 64 42)"><line x1="64" y1="28" x2="64" y2="24"/></g>
+    </g>
+  </g>
+  <g fill="#0a0608" opacity="0.6">
+    <circle cx="64" cy="80" r="8"/>
+    <circle cx="46" cy="50" r="6"/>
+    <circle cx="82" cy="50" r="6"/>
+    <circle cx="64" cy="42" r="5"/>
+  </g>
+  <g fill="#fff2cc" fill-opacity="0.4">
+    <ellipse cx="42" cy="46" rx="3" ry="1.5" transform="rotate(-20 42 46)"/>
+    <ellipse cx="86" cy="46" rx="3" ry="1.5" transform="rotate(20 86 46)"/>
+    <ellipse cx="60" cy="38" rx="3" ry="1.5" transform="rotate(-15 60 38)"/>
+    <ellipse cx="58" cy="74" rx="4" ry="2" transform="rotate(-20 58 74)"/>
+    <ellipse cx="70" cy="74" rx="4" ry="2" transform="rotate(20 70 74)"/>
+  </g>
+  <g stroke="#8a5a10" stroke-width="0.7" stroke-opacity="0.5" stroke-dasharray="1 2" fill="none">
+    <circle cx="64" cy="80" r="22" stroke-dasharray="0 40 4 300"/>
+  </g>
+</svg>

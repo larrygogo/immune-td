@@ -1,0 +1,68 @@
+<!doctype html>
+<!--
+  Immune TD
+  Copyright (c) 2026 Larry. All Rights Reserved.
+  Proprietary software. Unauthorized copying, distribution, or modification
+  is strictly prohibited. See LICENSE file for details.
+-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Larry" />
+    <meta name="copyright" content="Copyright (c) 2026 Larry. All Rights Reserved." />
+    <meta name="license" content="Proprietary - All Rights Reserved" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#070a0c" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>微观防线 · Immune TD</title>
+    <!--
+      字体已改为内置（@fontsource/jetbrains-mono），由 main.web.tsx import，
+      Vite 打包到 dist/assets，不再依赖外网 Google Fonts。中文走 public/fonts subset。
+    -->
+    <style>
+      /* 初始底色与游戏主色一致，避免白屏观感 */
+      html, body { margin: 0; padding: 0; background: #070a0c; color: #5de0b5; }
+      /* Phaser boot 前的占位 loader：两颗呼吸圆点 */
+      #boot-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.25em;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      #boot-loader::before,
+      #boot-loader::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #5de0b5;
+        opacity: 0.35;
+        animation: bootPulse 1.2s ease-in-out infinite;
+      }
+      #boot-loader::after { animation-delay: 0.3s; }
+      @keyframes bootPulse {
+        0%, 100% { transform: scale(0.6); opacity: 0.25; }
+        50%      { transform: scale(1.2); opacity: 0.9; }
+      }
+      /* Phaser 初始化完成后由 JS 隐藏 */
+      body.boot-done #boot-loader { opacity: 0; transition: opacity 220ms; }
+    </style>
+  </head>
+  <body>
+    <div id="boot-loader" aria-hidden="true">
+      <span>启 动 中</span>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

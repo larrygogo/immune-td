@@ -1,0 +1,24 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: immune-td-server
+    ports:
+      - "127.0.0.1:3101:3100"
+    volumes:
+      - ./data:/data
+    environment:
+      DATABASE_URL: /data/immune-td.db
+      BIND_HOST: 0.0.0.0
+      BIND_PORT: "3100"
+      CORS_ALLOWED_ORIGINS: "${CORS_ALLOWED_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}"
+      TOKEN_TTL_DAYS: "30"
+      ANON_RETENTION_DAYS: "30"
+      BODY_LIMIT_KB: "500"
+      LOG_LEVEL: info
+      # 首次启动 seed admin：users 表为空 + 两值都有 → 自动创建一个 admin 帐号
+      # INITIAL_ADMIN_PASSWORD 必填（${VAR:?err} 语法：.env 没设则 compose 直接报错）
+      INITIAL_ADMIN_USERNAME: "${INITIAL_ADMIN_USERNAME:-larry}"
+      INITIAL_ADMIN_PASSWORD: "${INITIAL_ADMIN_PASSWORD:?请在 .env 里设 INITIAL_ADMIN_PASSWORD（想跳过 seed 可注释掉这行，但首启没有 admin 帐号）}"
+    restart: unless-stopped

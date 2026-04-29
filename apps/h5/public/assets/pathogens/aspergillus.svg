@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="as-core" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#c8ff90"/>
+      <stop offset="55%" stop-color="#7ce050"/>
+      <stop offset="100%" stop-color="#1a4a0a"/>
+    </radialGradient>
+    <radialGradient id="as-glow">
+      <stop offset="0%" stop-color="#7ce050" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#7ce050" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="64" cy="64" r="60" fill="url(#as-glow)"/>
+  <g fill="#7ce050" fill-opacity="0.55">
+    <circle cx="18" cy="30" r="1.2"/>
+    <circle cx="28" cy="18" r="1"/>
+    <circle cx="44" cy="12" r="1.1"/>
+    <circle cx="88" cy="14" r="1.2"/>
+    <circle cx="104" cy="22" r="1"/>
+    <circle cx="116" cy="40" r="1.1"/>
+    <circle cx="118" cy="64" r="1.2"/>
+    <circle cx="114" cy="88" r="1"/>
+    <circle cx="102" cy="108" r="1.2"/>
+    <circle cx="82" cy="118" r="1"/>
+    <circle cx="56" cy="118" r="1.1"/>
+    <circle cx="30" cy="108" r="1"/>
+    <circle cx="14" cy="90" r="1.2"/>
+    <circle cx="10" cy="64" r="1.1"/>
+  </g>
+  <g>
+    <g stroke="#7ce050" stroke-width="0.8" stroke-opacity="0.7">
+      <g transform="rotate(0 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(45 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(90 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(135 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(180 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(225 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(270 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(315 64 64)">
+        <line x1="64" y1="40" x2="64" y2="18" fill="none"/>
+        <circle cx="64" cy="22" r="2.8" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="28" r="2.4" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="34" r="2" fill="#7ce050" stroke="none"/>
+      </g>
+    </g>
+    <g stroke="#7ce050" stroke-width="0.8" stroke-opacity="0.7">
+      <g transform="rotate(22.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(67.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(112.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(157.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(202.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(247.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(292.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+      <g transform="rotate(337.5 64 64)">
+        <line x1="64" y1="40" x2="64" y2="22" fill="none"/>
+        <circle cx="64" cy="25" r="2.4" fill="#c8ff90" stroke="#7ce050" stroke-width="0.6"/>
+        <circle cx="64" cy="31" r="2" fill="#a0e870" stroke="#7ce050" stroke-width="0.5"/>
+        <circle cx="64" cy="36" r="1.6" fill="#7ce050" stroke="none"/>
+      </g>
+    </g>
+  </g>
+  <circle cx="64" cy="64" r="18" fill="url(#as-core)" stroke="#7ce050" stroke-width="2"/>
+  <circle cx="64" cy="64" r="13" fill="none" stroke="#7ce050" stroke-width="0.6" stroke-opacity="0.5"/>
+  <g fill="#a0e870">
+    <circle cx="64"    cy="46"    r="2.5"/>
+    <circle cx="76.73" cy="51.27" r="2.3"/>
+    <circle cx="82"    cy="64"    r="2.5"/>
+    <circle cx="76.73" cy="76.73" r="2.3"/>
+    <circle cx="64"    cy="82"    r="2.5"/>
+    <circle cx="51.27" cy="76.73" r="2.3"/>
+    <circle cx="46"    cy="64"    r="2.5"/>
+    <circle cx="51.27" cy="51.27" r="2.3"/>
+  </g>
+  <circle cx="64" cy="64" r="5" fill="#1a2a08"/>
+  <circle cx="64" cy="64" r="2" fill="#7ce050"/>
+</svg>

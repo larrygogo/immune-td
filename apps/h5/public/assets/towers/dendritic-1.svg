@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="den-core"><stop offset="0%" stop-color="#fff3c8"/><stop offset="50%" stop-color="#ffcc44"/><stop offset="100%" stop-color="#8a5a10" stop-opacity="0"/></radialGradient>
+    <radialGradient id="den-amb"><stop offset="0%" stop-color="#ffcc44" stop-opacity="0.18"/><stop offset="100%" stop-color="#ffcc44" stop-opacity="0"/></radialGradient>
+  </defs>
+  <circle cx="64" cy="64" r="54" fill="url(#den-amb)"/>
+  <g stroke="#ffcc44" stroke-width="2.5" stroke-linecap="round">
+    <line x1="64"    y1="46"   x2="64"    y2="14"/>
+    <line x1="79.59" y1="55"   x2="107.3" y2="39"/>
+    <line x1="79.59" y1="73"   x2="107.3" y2="89"/>
+    <line x1="64"    y1="82"   x2="64"    y2="114"/>
+    <line x1="48.41" y1="73"   x2="20.7"  y2="89"/>
+    <line x1="48.41" y1="55"   x2="20.7"  y2="39"/>
+  </g>
+  <g fill="#ffcc44">
+    <circle cx="64"     cy="12" r="3.5"/>
+    <circle cx="109.03" cy="38" r="3.5"/>
+    <circle cx="109.03" cy="90" r="3.5"/>
+    <circle cx="64"     cy="116" r="3.5"/>
+    <circle cx="18.97"  cy="90" r="3.5"/>
+    <circle cx="18.97"  cy="38" r="3.5"/>
+  </g>
+  <g fill="#ffcc44" fill-opacity="0.3">
+    <circle cx="64"     cy="12" r="6"/>
+    <circle cx="109.03" cy="38" r="6"/>
+    <circle cx="109.03" cy="90" r="6"/>
+    <circle cx="64"     cy="116" r="6"/>
+    <circle cx="18.97"  cy="90" r="6"/>
+    <circle cx="18.97"  cy="38" r="6"/>
+  </g>
+  <circle cx="64" cy="64" r="10" fill="rgba(138,90,16,0.3)" stroke="#ffcc44" stroke-width="2"/>
+  <circle cx="64" cy="64" r="5"  fill="url(#den-core)"/>
+  <circle cx="64" cy="64" r="2"  fill="#fff8dc"/>
+</svg>

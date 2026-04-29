@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="neu-core"><stop offset="0%" stop-color="#ffb0b8"/><stop offset="50%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a0a18" stop-opacity="0"/></radialGradient>
+    <radialGradient id="neu-amb"><stop offset="0%" stop-color="#e63946" stop-opacity="0.18"/><stop offset="100%" stop-color="#e63946" stop-opacity="0"/></radialGradient>
+    <linearGradient id="neu-body" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7a1428" stop-opacity="0.5"/><stop offset="100%" stop-color="#280a10" stop-opacity="0.78"/></linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="60" fill="url(#neu-amb)"/>
+  <circle cx="64" cy="64" r="58" fill="none" stroke="#e63946" stroke-width="0.7" stroke-opacity="0.4" stroke-dasharray="2 4"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#e63946" stroke-width="0.6" stroke-opacity="0.3" stroke-dasharray="1 3"/>
+  <g fill="url(#neu-body)">
+    <circle cx="64"    cy="34"    r="18"/>
+    <circle cx="92.53" cy="54.73" r="18"/>
+    <circle cx="81.63" cy="88.27" r="18"/>
+    <circle cx="46.37" cy="88.27" r="18"/>
+    <circle cx="35.47" cy="54.73" r="18"/>
+  </g>
+  <g fill="none" stroke="#e63946" stroke-width="2" stroke-opacity="0.95">
+    <circle cx="64"    cy="34"    r="18"/>
+    <circle cx="92.53" cy="54.73" r="18"/>
+    <circle cx="81.63" cy="88.27" r="18"/>
+    <circle cx="46.37" cy="88.27" r="18"/>
+    <circle cx="35.47" cy="54.73" r="18"/>
+  </g>
+  <g>
+    <circle cx="64"    cy="34"    r="5"   fill="none" stroke="#e63946" stroke-width="1" stroke-opacity="0.85"/>
+    <circle cx="64"    cy="34"    r="2.5" fill="url(#neu-core)"/>
+    <circle cx="92.53" cy="54.73" r="5"   fill="none" stroke="#e63946" stroke-width="1" stroke-opacity="0.85"/>
+    <circle cx="92.53" cy="54.73" r="2.5" fill="url(#neu-core)"/>
+    <circle cx="81.63" cy="88.27" r="5"   fill="none" stroke="#e63946" stroke-width="1" stroke-opacity="0.85"/>
+    <circle cx="81.63" cy="88.27" r="2.5" fill="url(#neu-core)"/>
+    <circle cx="46.37" cy="88.27" r="5"   fill="none" stroke="#e63946" stroke-width="1" stroke-opacity="0.85"/>
+    <circle cx="46.37" cy="88.27" r="2.5" fill="url(#neu-core)"/>
+    <circle cx="35.47" cy="54.73" r="5"   fill="none" stroke="#e63946" stroke-width="1" stroke-opacity="0.85"/>
+    <circle cx="35.47" cy="54.73" r="2.5" fill="url(#neu-core)"/>
+  </g>
+  <circle cx="64" cy="64" r="7"   fill="url(#neu-body)" stroke="#e63946" stroke-width="1"/>
+  <circle cx="64" cy="64" r="2.5" fill="#ffe0e6"/>
+  <g fill="#ff8899" fill-opacity="0.85">
+    <circle cx="56"  cy="22"  r="1"/> <circle cx="72"  cy="22"  r="1"/>
+    <circle cx="86"  cy="30"  r="1"/> <circle cx="42"  cy="30"  r="1"/>
+    <circle cx="104" cy="54"  r="1"/> <circle cx="24"  cy="54"  r="1"/>
+    <circle cx="98"  cy="74"  r="1"/> <circle cx="30"  cy="74"  r="1"/>
+    <circle cx="82"  cy="104" r="1"/> <circle cx="46"  cy="104" r="1"/>
+    <circle cx="64"  cy="108" r="1"/>
+  </g>
+</svg>

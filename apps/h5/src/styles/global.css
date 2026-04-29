@@ -1,0 +1,234 @@
+/* 中文字体子集（scripts/subset-font.ts 构建时生成，只含源码里用到的汉字）。
+ * unicode-range 限定 CJK 范围，缺字自动 fallback 到系统 PingFang / YaHei / Noto CJK。
+ * 字体方案 C：MiSans 主 + Noto Sans SC fallback。
+ *  - MiSans（小米开源，方正锐利，cyber-on-dark 美学）400/700/900
+ *  - Noto Sans SC 400/700 作 fallback，覆盖 MiSans 漏字 / 加载失败场景
+ *  - Share Tech Mono 400（HUD 数字 mono 主字体，cyber 显示器风、跟 MiSans 协调）
+ *    OFL 1.1 商用免费，仅 Regular 单字重，subset 后 ~8 KB（不含 CJK 字形） */
+@font-face {
+  font-family: 'MiSans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/misans-subset-400.woff2') format('woff2');
+  /* CJK + ASCII + UI 几何/箭头/符号/Dingbats（★☆◆◇▶◀✓✕←→↻ 等都靠 subset 提供，
+   * 不声明 range 浏览器会跳过本 face 落到系统字体，某些 iOS 字体不带这些符号 → 渲染成
+   * .notdef 占位 ◇/□，必须显式覆盖。详见 scripts/subset-font.ts 的 BASE_CHARS。 */
+  unicode-range: U+0020-007F, U+2190-21FF, U+25A0-25FF, U+2600-26FF, U+2700-27BF, U+3000-303F,
+    U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: 'MiSans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/misans-subset-700.woff2') format('woff2');
+  /* CJK + ASCII + UI 几何/箭头/符号/Dingbats（★☆◆◇▶◀✓✕←→↻ 等都靠 subset 提供，
+   * 不声明 range 浏览器会跳过本 face 落到系统字体，某些 iOS 字体不带这些符号 → 渲染成
+   * .notdef 占位 ◇/□，必须显式覆盖。详见 scripts/subset-font.ts 的 BASE_CHARS。 */
+  unicode-range: U+0020-007F, U+2190-21FF, U+25A0-25FF, U+2600-26FF, U+2700-27BF, U+3000-303F,
+    U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: 'MiSans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/misans-subset-900.woff2') format('woff2');
+  /* CJK + ASCII + UI 几何/箭头/符号/Dingbats（★☆◆◇▶◀✓✕←→↻ 等都靠 subset 提供，
+   * 不声明 range 浏览器会跳过本 face 落到系统字体，某些 iOS 字体不带这些符号 → 渲染成
+   * .notdef 占位 ◇/□，必须显式覆盖。详见 scripts/subset-font.ts 的 BASE_CHARS。 */
+  unicode-range: U+0020-007F, U+2190-21FF, U+25A0-25FF, U+2600-26FF, U+2700-27BF, U+3000-303F,
+    U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc-subset-400.woff2') format('woff2');
+  /* CJK + ASCII + UI 几何/箭头/符号/Dingbats（★☆◆◇▶◀✓✕←→↻ 等都靠 subset 提供，
+   * 不声明 range 浏览器会跳过本 face 落到系统字体，某些 iOS 字体不带这些符号 → 渲染成
+   * .notdef 占位 ◇/□，必须显式覆盖。详见 scripts/subset-font.ts 的 BASE_CHARS。 */
+  unicode-range: U+0020-007F, U+2190-21FF, U+25A0-25FF, U+2600-26FF, U+2700-27BF, U+3000-303F,
+    U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/noto-sans-sc-subset-700.woff2') format('woff2');
+  /* CJK + ASCII + UI 几何/箭头/符号/Dingbats（★☆◆◇▶◀✓✕←→↻ 等都靠 subset 提供，
+   * 不声明 range 浏览器会跳过本 face 落到系统字体，某些 iOS 字体不带这些符号 → 渲染成
+   * .notdef 占位 ◇/□，必须显式覆盖。详见 scripts/subset-font.ts 的 BASE_CHARS。 */
+  unicode-range: U+0020-007F, U+2190-21FF, U+25A0-25FF, U+2600-26FF, U+2700-27BF, U+3000-303F,
+    U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/share-tech-mono-subset-400.woff2') format('woff2');
+  /* 仅含 ASCII（mono 字体不覆盖 CJK，CJK 段会跳到下一个 fallback） */
+  unicode-range: U+0020-007F;
+}
+
+/* Immune TD design tokens — 对齐 src/game-engine/style.ts，详见 docs/design-system.md §2 */
+:root {
+  /* 色板（与 style.ts 同步） */
+  --color-bg: #070a0c;
+  --color-bg-elevated: #0d1518;
+  --color-primary: #5de0b5;
+  --color-primary-dim: #2a8a72;
+  --color-danger: #ff4050;
+  --color-accent: #6ed4ee;
+  --color-white: #ffffff;
+  --color-text: #e8f0ec;
+  --color-text-dim: #8a9e98;
+
+  /* 间距 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* 字体（中文 fallback 链：MiSans 主 → Noto Sans SC → 系统中文，避免落到 monospace 被系统映射成宋体） */
+  --font-body: 'MiSans', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'Noto Sans CJK SC', sans-serif;
+  /* mono：Share Tech Mono 主（cyber 显示器风、跟 MiSans 协调），JetBrains Mono fallback。
+   * CJK 字符通过 unicode-range 自动落到 MiSans / 系统中文（不落到 monospace 宋体）。 */
+  --font-mono: 'Share Tech Mono', 'JetBrains Mono', 'SF Mono', Consolas, 'MiSans', 'Noto Sans SC',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+
+  /* 效果 */
+  --glow-primary: 0 0 12px rgba(93, 224, 181, 0.5);
+  --glow-danger: 0 0 12px rgba(255, 64, 80, 0.5);
+  --border-subtle: 1px solid rgba(110, 212, 238, 0.15);
+
+  /* 网格 */
+  --grid-cell: 64px;
+
+  /* 设计图分辨率（CSS px）— 同步 src/game-engine/init.ts 的 DESIGN_W / DESIGN_H。
+   * canvas 内部坐标永远 390×844（iPhone 14 竖屏基准），运行时按 FIT 缩放贴合窗口，
+   * 桌面 / 平板 / 横屏 / 短屏都通过 letterbox 居中。 */
+  --viewport-max-w: 390px;
+  --viewport-max-h: 844px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* 手机端禁用双击缩放 / 长按选择 / 滚动惯性与反弹 */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+html {
+  width: 100%;
+  /* iOS Safari 黑边坑：JS 的 window.innerHeight / documentElement.clientHeight 都等于
+   * visual viewport（不含动态地址栏），但 CSS 的 100vh = layout viewport（全屏，含
+   * 地址栏区域）。要让 canvas 真正全屏，必须靠 CSS 100vh / 100dvh，不能用 JS 算高。
+   *
+   * dvh fallback chain：
+   *   1. 100% — 老浏览器兜底
+   *   2. 100vh — iOS Safari layout viewport，全屏（toolbar 在 canvas 上方半透明）
+   *   3. 100dvh — 现代浏览器 dynamic viewport，跟 toolbar 实时联动（best UX） */
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #000;
+}
+
+body {
+  /* 全屏铺满 — canvas 由 init.ts 按 FIT 等比缩放，自身在 #root 内 flex 居中。
+   * letterbox 四周露出的 body 背景 = 纯黑（与 html 同色）保持影院感。
+   * height 跟 html 同款 fallback chain 让 iOS Safari 不出黑边。 */
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  position: relative;
+  background: #000;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  /* FIT 后 canvas CSS 尺寸 ≤ window，flex 在四周补齐 letterbox 居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 历史遗留：CSS 全屏网格背景。FIT 改造后 canvas 已被居中且 Phaser 自带不透明 bg，
+ * body::before 在画布后被完全遮挡，只会在 letterbox 区透出污染影院黑边，因此移除。
+ * 如需场景内栅格背景，请由各 Phaser scene 自己绘（见 GameScene 的 GridLayer）。 */
+
+/* 横屏检测：方向横屏 + 视口高度 < 600 CSS px（排除大屏桌面）显示「请竖屏」遮罩。
+ * Phaser 仍在跑（CSS-only 不能 pause game），后续 Phase 接 JS 监听做暂停。 */
+@media (orientation: landscape) and (max-height: 600px) {
+  body::after {
+    content: '↻  请竖屏游玩';
+    position: fixed;
+    inset: 0;
+    background: var(--color-bg);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: 18px;
+    letter-spacing: 0.3em;
+    text-shadow: var(--glow-primary);
+    z-index: 99999;
+    pointer-events: auto;
+  }
+}
+
+/* 按钮：继承字体，鼠标点击后不保留默认 focus ring（键盘 Tab 仍有 outline） */
+button {
+  font: inherit;
+  color: inherit;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:focus-visible {
+  outline: 1px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Firefox 特有 inner focus 边框 */
+button::-moz-focus-inner {
+  border: 0;
+}
+
+/* 图标/sprite 统一：禁用长按保存菜单、拖拽预览，并让指针穿透到容器按钮 */
+img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+  pointer-events: none;
+}

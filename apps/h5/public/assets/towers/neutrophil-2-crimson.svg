@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="neu-core"><stop offset="0%" stop-color="#ffb0b8"/><stop offset="50%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a0a18" stop-opacity="0"/></radialGradient>
+    <radialGradient id="neu-amb"><stop offset="0%" stop-color="#e63946" stop-opacity="0.18"/><stop offset="100%" stop-color="#e63946" stop-opacity="0"/></radialGradient>
+    <linearGradient id="neu-body" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7a1428" stop-opacity="0.5"/><stop offset="100%" stop-color="#280a10" stop-opacity="0.78"/></linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="58" fill="url(#neu-amb)"/>
+  <circle cx="64" cy="64" r="54" fill="none" stroke="#e63946" stroke-width="0.7" stroke-opacity="0.4" stroke-dasharray="2 4"/>
+  <g fill="url(#neu-body)">
+    <circle cx="64"    cy="42" r="22"/>
+    <circle cx="44.95" cy="75" r="22"/>
+    <circle cx="83.05" cy="75" r="22"/>
+  </g>
+  <g fill="none" stroke="#e63946" stroke-width="2.2">
+    <circle cx="64"    cy="42" r="22"/>
+    <circle cx="44.95" cy="75" r="22"/>
+    <circle cx="83.05" cy="75" r="22"/>
+  </g>
+  <g>
+    <circle cx="64"    cy="42" r="6"   fill="none" stroke="#e63946" stroke-width="1.1" stroke-opacity="0.8"/>
+    <circle cx="64"    cy="42" r="3"   fill="url(#neu-core)"/>
+    <circle cx="64"    cy="42" r="1.1" fill="#ffe0e6"/>
+    <circle cx="44.95" cy="75" r="6"   fill="none" stroke="#e63946" stroke-width="1.1" stroke-opacity="0.8"/>
+    <circle cx="44.95" cy="75" r="3"   fill="url(#neu-core)"/>
+    <circle cx="44.95" cy="75" r="1.1" fill="#ffe0e6"/>
+    <circle cx="83.05" cy="75" r="6"   fill="none" stroke="#e63946" stroke-width="1.1" stroke-opacity="0.8"/>
+    <circle cx="83.05" cy="75" r="3"   fill="url(#neu-core)"/>
+    <circle cx="83.05" cy="75" r="1.1" fill="#ffe0e6"/>
+  </g>
+  <g stroke="#e63946" stroke-width="0.8" stroke-opacity="0.7" stroke-dasharray="1 1">
+    <line x1="56" y1="56" x2="50" y2="64"/>
+    <line x1="72" y1="56" x2="78" y2="64"/>
+    <line x1="56" y1="78" x2="72" y2="78"/>
+  </g>
+  <g fill="#ff8899" fill-opacity="0.85">
+    <circle cx="54"  cy="30" r="1.1"/><circle cx="74"  cy="30" r="1.1"/>
+    <circle cx="50"  cy="46" r="1"/>  <circle cx="78"  cy="46" r="1"/>
+    <circle cx="32"  cy="64" r="1"/>  <circle cx="96"  cy="64" r="1"/>
+    <circle cx="32"  cy="80" r="1"/>  <circle cx="96"  cy="80" r="1"/>
+    <circle cx="52"  cy="92" r="1"/>  <circle cx="76"  cy="92" r="1"/>
+  </g>
+  <g fill="#7a0a18">
+    <circle cx="38" cy="68" r="1.6"/>
+    <circle cx="90" cy="68" r="1.6"/>
+  </g>
+</svg>

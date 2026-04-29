@@ -1,0 +1,14 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "immune-td-spike",
+  "appid": "wxYOUR_APP_ID",
+  "compileType": "miniGame",
+  "setting": {
+    "es6": true,
+    "enhance": false,
+    "postcss": false,
+    "minified": false,
+    "ignoreUploadUnusedFiles": true
+  },
+  "libVersion": "3.5.4"
+}

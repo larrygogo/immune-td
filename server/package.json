@@ -1,0 +1,23 @@
+{
+  "name": "immune-td-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot src/index.ts",
+    "start": "bun src/index.ts",
+    "test": "bun test",
+    "build": "bun build ./src/index.ts --target=bun --outfile=./dist/server.js --external @node-rs/argon2"
+  },
+  "dependencies": {
+    "@immune-td/shared": "workspace:*",
+    "hono": "^4.6.0",
+    "zod": "^3.23.0",
+    "@node-rs/argon2": "^2.0.0",
+    "hono-rate-limiter": "^0.4.0"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "^5.5.0"
+  }
+}

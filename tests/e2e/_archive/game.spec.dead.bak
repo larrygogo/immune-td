@@ -1,0 +1,378 @@
+import { expect, test } from '@playwright/test';
+
+test.describe('Game 屏端到端', () => {
+  test.beforeEach(async ({ page }) => {
+    // 先跳到页面建立 origin，再预置 localStorage，最后 reload 让 zustand persist 读取
+    await page.goto('/');
+    await page.evaluate(() => {
+      localStorage.setItem(
+        'immune-td:meta:v2',
+        JSON.stringify({
+          state: {
+            unlockedLevels: [1, 2],
+            unlockedTowers: ['macrophage', 'neutrophil'],
+            stars: {},
+            researchPoints: 0,
+            unlockedResearch: [],
+            settings: { masterVolume: 0.8, sfxVolume: 1, bgmVolume: 0.6, graphics: 'high' },
+          },
+          version: 3,
+        }),
+      );
+    });
+    await page.reload();
+    // Splash 资源加载完后显示"进入游戏"按钮，点击才跳 mainMenu（触达 autoplay 解锁）
+    await page.waitForSelector('[aria-label="enter-game"]', { timeout: 15000 });
+    await page.getByLabel('enter-game').click();
+    // 主菜单 → 点"选择关卡"进 LevelSelect → 点关卡 1
+    await page.waitForSelector('[aria-label="open-level-select"]', { timeout: 8000 });
+    await page.getByLabel('open-level-select').click();
+    await page.waitForSelector('[aria-label="enter-level-1"]', { timeout: 8000 });
+    await page.getByLabel('enter-level-1', { exact: true }).click();
+    await page.waitForSelector('[aria-label="briefing-start"]', { timeout: 8000 });
+    await page.getByLabel('briefing-start').click();
+    await page.waitForSelector('[aria-label="start-wave"]', { timeout: 8000 });
+  });
+
+  test('游戏屏 HUD 元素可见', async ({ page }) => {
+    await expect(page.getByLabel('hp')).toBeVisible();
+    await expect(page.getByLabel('atp')).toBeVisible();
+    await expect(page.getByLabel('wave', { exact: true })).toBeVisible();
+    await expect(page.getByLabel('start-wave')).toBeVisible();
+    await expect(page.getByLabel('select-macrophage')).toBeVisible();
+  });
+
+  test('ATP 初始值为 100', async ({ page }) => {
+    await expect(page.getByLabel('atp')).toContainText('100');
+  });
+
+  test('放塔后 ATP 减少 30', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-1').click();
+    await expect(page.getByLabel('atp')).toContainText('70');
+  });
+
+  test('路径格上不能放塔（ATP 不变）', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-0-4').click(); // (0,4) 是 entry
+    await expect(page.getByLabel('atp')).toContainText('100');
+  });
+
+  test('发动波次后 HP 显示有效数字', async ({ page }) => {
+    await page.getByLabel('start-wave').click();
+    await page.waitForTimeout(2000);
+    const hp = await page.getByLabel('hp').textContent();
+    expect(hp).toMatch(/HP · \d+/);
+  });
+
+  test('放塔后病原体绕行：塔入列且波次正常推进', async ({ page }) => {
+    // 在入口右侧放一塔，BFS 应重算绕开它
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-3').click();
+    await expect(page.getByLabel('atp')).toContainText('70');
+
+    await page.getByLabel('start-wave').click();
+    await page.waitForTimeout(2000);
+    const hp = await page.getByLabel('hp').textContent();
+    expect(hp).toMatch(/HP · \d+/);
+  });
+
+  test('封堵所有通路时放塔被拒绝（ATP 保持 40，只扣掉两次成功放置）', async ({ page }) => {
+    // 围住入口 (0,4)：先 (0,3)、(0,5)，此时 (1,4) 是唯一通路
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-0-3').click();
+    await expect(page.getByLabel('atp')).toContainText('70');
+
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-0-5').click();
+    await expect(page.getByLabel('atp')).toContainText('40');
+
+    // 封死 (1,4) 应失败，ATP 保持 40
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-4').click();
+    await expect(page.getByLabel('atp')).toContainText('40');
+  });
+
+  test('波次进行中放塔被拒绝（ATP 不变）', async ({ page }) => {
+    await page.getByLabel('start-wave').click();
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-5-5').click();
+    await expect(page.getByLabel('atp')).toContainText('100');
+  });
+
+  // P2C 用例
+  test('初始进入 build 阶段：显示倒计时横幅且 WAVE 为 1/5', async ({ page }) => {
+    await expect(page.getByLabel('build-phase-banner')).toBeVisible();
+    await expect(page.getByLabel('wave', { exact: true })).toContainText('1 / 5');
+    await expect(page.getByLabel('build-countdown')).toBeVisible();
+  });
+
+  test('点击已放塔打开塔详情面板，显示 Lv1 与升级按钮', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-1').click();
+    // 再次点同格（此时该格已有塔）
+    await page.getByLabel('cell-1-1').click();
+    await expect(page.getByLabel('tower-detail')).toBeVisible();
+    await expect(page.getByLabel('tower-detail')).toContainText('Lv1');
+    await expect(page.getByLabel('tower-upgrade')).toBeVisible();
+    await expect(page.getByLabel('tower-sell')).toBeVisible();
+  });
+
+  test('塔升级：Lv1 → Lv2 扣 40 ATP', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-1').click(); // ATP=70
+    await page.getByLabel('cell-1-1').click(); // 打开详情
+    await page.getByLabel('tower-upgrade').click();
+    await expect(page.getByLabel('atp')).toContainText('30'); // 70 - 40
+    await expect(page.getByLabel('tower-detail')).toContainText('Lv2');
+  });
+
+  test('塔拆除：Lv1 返还 15 ATP 并从棋盘移除', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-1').click(); // ATP=70
+    await page.getByLabel('cell-1-1').click();
+    await page.getByLabel('tower-sell').click();
+    await expect(page.getByLabel('atp')).toContainText('85'); // 70 + 15
+    // 详情面板应消失
+    await expect(page.getByLabel('tower-detail')).toHaveCount(0);
+  });
+
+  test('失败结算：无塔直接开波，扣完 HP 后显示结算画面', async ({ page }) => {
+    await page.getByLabel('start-wave').click();
+    // 10 只鼻病毒 × 8 秒左右全到出口；保险等 30 秒
+    await page.waitForSelector('[aria-label="stage-result"]', { timeout: 60_000 });
+    await expect(page.getByLabel('stage-result')).toContainText('防线崩溃');
+    await expect(page.getByLabel('stage-replay')).toBeVisible();
+    await expect(page.getByLabel('stage-back-to-menu')).toBeVisible();
+    await expect(page.getByLabel('stage-next-level')).toBeDisabled();
+  });
+
+  test('结算重玩：HP 恢复 10、回到 build 阶段', async ({ page }) => {
+    await page.getByLabel('start-wave').click();
+    await page.waitForSelector('[aria-label="stage-result"]', { timeout: 60_000 });
+    await page.getByLabel('stage-replay').click();
+    await expect(page.getByLabel('stage-result')).toHaveCount(0);
+    await expect(page.getByLabel('hp')).toContainText('10');
+    await expect(page.getByLabel('build-phase-banner')).toBeVisible();
+  });
+
+  // P3 用例 - T2 粒细胞与视觉反馈
+  test('T2 粒细胞按钮可见，点击扣 50 ATP', async ({ page }) => {
+    await expect(page.getByLabel('select-neutrophil')).toBeVisible();
+    await page.getByLabel('select-neutrophil').click();
+    await page.getByLabel('cell-2-2').click();
+    await expect(page.getByLabel('atp')).toContainText('50'); // 100 - 50
+  });
+
+  test('T2 塔详情显示"粒细胞"名称与 Lv1 数值', async ({ page }) => {
+    await page.getByLabel('select-neutrophil').click();
+    await page.getByLabel('cell-2-2').click();
+    await page.getByLabel('cell-2-2').click(); // 打开详情
+    await expect(page.getByLabel('tower-detail')).toContainText('粒细胞');
+    await expect(page.getByLabel('tower-detail')).toContainText('Lv1');
+    await expect(page.getByLabel('tower-detail')).toContainText('35'); // damage
+  });
+
+  test('选中塔类型后 hover 格子显示 range 预览', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-3-3').hover();
+    await expect(page.getByLabel('range-preview')).toBeVisible();
+  });
+
+  test('未选中塔类型时不显示 range 预览', async ({ page }) => {
+    await page.getByLabel('cell-3-3').hover();
+    await expect(page.getByLabel('range-preview')).toHaveCount(0);
+  });
+
+  test('速度按钮：点击循环 1→2→3→1', async ({ page }) => {
+    const btn = page.getByLabel('cycle-speed');
+    await expect(btn).toContainText('×1');
+    await btn.click();
+    await expect(btn).toContainText('×2');
+    await btn.click();
+    await expect(btn).toContainText('×3');
+    await btn.click();
+    await expect(btn).toContainText('×1');
+  });
+
+  test('顶部显示剩余威胁数：build 阶段 = 下一波总数', async ({ page }) => {
+    // 关 1 第一波：10 只 rhinovirus
+    await expect(page.getByLabel('pending-count')).toContainText('下一波');
+    await expect(page.getByLabel('pending-count')).toContainText('10');
+  });
+
+  test('暂停按钮：点击后图标变 >，pause-menu 里继续后回 ||', async ({ page }) => {
+    const btn = page.getByLabel('toggle-pause');
+    await expect(btn).toContainText('||');
+    await btn.click();
+    await expect(btn).toContainText('>');
+    // 暂停后 toggle-pause 被 pause-menu 覆盖，改从菜单继续
+    await page.getByLabel('pause-resume').click();
+    await expect(btn).toContainText('||');
+  });
+
+  test('暂停时弹出菜单：继续按钮恢复游戏', async ({ page }) => {
+    await page.getByLabel('toggle-pause').click();
+    await expect(page.getByLabel('pause-menu')).toBeVisible();
+    await expect(page.getByLabel('pause-resume')).toBeVisible();
+    await page.getByLabel('pause-resume').click();
+    await expect(page.getByLabel('pause-menu')).toHaveCount(0);
+    await expect(page.getByLabel('toggle-pause')).toContainText('||');
+  });
+
+  test('暂停菜单打开设置面板', async ({ page }) => {
+    await page.getByLabel('toggle-pause').click();
+    await page.getByLabel('pause-open-settings').click();
+    await expect(page.getByLabel('settings-panel')).toBeVisible();
+    await page.getByLabel('settings-close').click();
+    await expect(page.getByLabel('settings-panel')).toHaveCount(0);
+    // 关闭设置后仍在暂停菜单（游戏仍暂停）
+    await expect(page.getByLabel('pause-menu')).toBeVisible();
+  });
+
+  test('结算返回菜单：主菜单可见，不黑屏', async ({ page }) => {
+    await page.getByLabel('start-wave').click();
+    await page.waitForSelector('[aria-label="stage-result"]', { timeout: 60_000 });
+    await page.getByLabel('stage-back-to-menu').click();
+    await expect(page.getByLabel('main-menu')).toBeVisible();
+    await expect(page.getByLabel('continue-game')).toBeVisible();
+  });
+});
+
+test.describe('关 0 序章教学引导', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => {
+      localStorage.setItem(
+        'immune-td:meta:v2',
+        JSON.stringify({
+          state: {
+            unlockedLevels: [0, 1],
+            unlockedTowers: ['macrophage'],
+            stars: {},
+            researchPoints: 0,
+            unlockedResearch: [],
+            tutorialStep: 0,
+            settings: {
+              masterVolume: 0.8,
+              sfxVolume: 1,
+              bgmVolume: 0.6,
+              graphics: 'high',
+              muted: false,
+            },
+          },
+          version: 3,
+        }),
+      );
+    });
+    await page.reload();
+    await page.waitForSelector('[aria-label="enter-game"]', { timeout: 15000 });
+    await page.getByLabel('enter-game').click();
+    await page.waitForSelector('[aria-label="open-level-select"]', { timeout: 8000 });
+    await page.getByLabel('open-level-select').click();
+    await page.waitForSelector('[aria-label="enter-level-0"]', { timeout: 8000 });
+    await page.getByLabel('enter-level-0', { exact: true }).click();
+    await page.getByLabel('briefing-start').click();
+  });
+
+  test('tutorialStep=0：教学 overlay 显示 STEP 1', async ({ page }) => {
+    await expect(page.getByLabel('tutorial-overlay')).toContainText('STEP 1');
+    await expect(page.getByLabel('tutorial-overlay')).toContainText('选择一座免疫细胞塔');
+  });
+
+  test('选塔后推进到 STEP 2', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await expect(page.getByLabel('tutorial-overlay')).toContainText('STEP 2');
+  });
+
+  test('放塔后推进到 STEP 3', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-1').click();
+    await expect(page.getByLabel('tutorial-overlay')).toContainText('STEP 3');
+  });
+
+  test('发动波次后教学隐藏', async ({ page }) => {
+    await page.getByLabel('select-macrophage').click();
+    await page.getByLabel('cell-1-1').click();
+    await page.getByLabel('start-wave').click();
+    await expect(page.getByLabel('tutorial-overlay')).toHaveCount(0);
+  });
+
+  test('跳过教学按钮：点击后引导消失', async ({ page }) => {
+    await expect(page.getByLabel('tutorial-skip')).toBeVisible();
+    await page.getByLabel('tutorial-skip').click();
+    await expect(page.getByLabel('tutorial-overlay')).toHaveCount(0);
+  });
+});
+
+test.describe('主菜单端到端', () => {
+  test.beforeEach(async ({ page }) => {
+    // 清空 localStorage 模拟首次访问
+    await page.goto('/');
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+    await page.waitForSelector('[aria-label="enter-game"]', { timeout: 15000 });
+    await page.getByLabel('enter-game').click();
+  });
+
+  test('主菜单显示标题 + 继续按钮 + 关卡选择入口', async ({ page }) => {
+    await page.waitForSelector('[aria-label="main-menu"]', { timeout: 8000 });
+    await expect(page.getByLabel('continue-game')).toBeVisible();
+    await expect(page.getByLabel('open-level-select')).toBeVisible();
+    await expect(page.getByLabel('open-settings')).toBeVisible();
+  });
+
+  test('点击「继续」直接进入下一个未通关关卡 briefing', async ({ page }) => {
+    await page.waitForSelector('[aria-label="continue-game"]', { timeout: 8000 });
+    await page.getByLabel('continue-game').click();
+    await expect(page.getByLabel('level-briefing')).toBeVisible();
+  });
+
+  test('选择关卡页：Ch.1 关卡 1 可点，关卡 2 初始锁定', async ({ page }) => {
+    await page.getByLabel('open-level-select').click();
+    await expect(page.getByLabel('level-select')).toBeVisible();
+    await page.getByLabel('chapter-tab-1').click();
+    await expect(page.getByLabel('enter-level-1', { exact: true })).toBeEnabled();
+    await expect(page.getByLabel('enter-level-2', { exact: true })).toBeDisabled();
+  });
+
+  test('选择关卡页：点关卡 1 进入 briefing', async ({ page }) => {
+    await page.getByLabel('open-level-select').click();
+    await page.getByLabel('chapter-tab-1').click();
+    await page.getByLabel('enter-level-1', { exact: true }).click();
+    await expect(page.getByLabel('level-briefing')).toContainText('初次感染');
+    await expect(page.getByLabel('level-briefing')).toContainText('鼻病毒');
+  });
+
+  test('briefing 返回按钮回到主菜单', async ({ page }) => {
+    await page.getByLabel('open-level-select').click();
+    await page.getByLabel('chapter-tab-1').click();
+    await page.getByLabel('enter-level-1', { exact: true }).click();
+    await page.getByLabel('briefing-back').click();
+    await expect(page.getByLabel('main-menu')).toBeVisible();
+  });
+
+  test('选择关卡页章节 tab：Ch.1 皮肤前线 / Ch.6 中枢决战 可见', async ({ page }) => {
+    await page.getByLabel('open-level-select').click();
+    await expect(page.getByLabel('chapter-tab-1')).toContainText('皮肤前线');
+    await expect(page.getByLabel('chapter-tab-6')).toContainText('中枢决战');
+  });
+
+  test('选择关卡页可返回主菜单', async ({ page }) => {
+    await page.getByLabel('open-level-select').click();
+    await page.getByLabel('back-to-menu').click();
+    await expect(page.getByLabel('main-menu')).toBeVisible();
+  });
+
+  test('图鉴：入口可见 → 打开后 DEFENSES 和 THREATS tab 可切换', async ({ page }) => {
+    await page.getByLabel('open-encyclopedia').click();
+    const panel = page.getByLabel('encyclopedia', { exact: true });
+    await expect(panel).toBeVisible();
+    await expect(panel).toContainText('巨噬细胞');
+    await page.getByLabel('encyclopedia-tab-pathogens').click();
+    await expect(panel).toContainText('鼻病毒');
+    await expect(panel).toContainText('曲霉孢子');
+    await page.getByLabel('back-to-menu').click();
+    await expect(page.getByLabel('main-menu')).toBeVisible();
+  });
+});
